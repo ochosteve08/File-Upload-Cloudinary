@@ -5,7 +5,8 @@ const {connectToMongoDb,environmentVariables} = require('./config')
 
 
 
-
+// global error handler
+app.use(error.handler);
 
 const main = async () => {
   console.info("Starting server");
