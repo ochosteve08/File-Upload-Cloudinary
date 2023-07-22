@@ -1,25 +1,21 @@
 const Joi = require("joi");
 
 
-const uploadImage = joi.object({
-  name: joi.string().required().label("name"),
-  profile_img: joi.string().required().label("profile-img"),
-  cloudinary_id: Joi.string().required().label("cloudinary id"),
-});
+const uploadName = joi.object({
+  name: joi.string().min(3).required().label("name"),
+ });
 
 const uploadId = joi.object({
-  id: Joi.string().required().label(""),
+  id: Joi.string().required().label("user id"),
 });
 
-const updateImage = joi.object({
-  name: joi.string().required().label("name"),
-  profile_img: joi.string().required().label("profile-img"),
-  cloudinary_id: Joi.string().required().label("cloudinary id"),
-});
+const uploadImage = joi.object({
+   file: joi.string().required().label("profile-img"),
+ });
 
 
 module.exports = {
-  uploadImageUpload,
+  uploadImage,
   uploadId,
-  updateImage
+  uploadName
 };
