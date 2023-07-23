@@ -1,5 +1,5 @@
 const {bufferToDataURI} = require('./file');
-const {cloudinary} =require('./cloudinary')
+const cloudinary =require('./cloudinary')
 
 
 
