@@ -1,9 +1,27 @@
-const express = require('express');
-const {error} = require('./lib-handler')
+const express = require("express");
+const { error } = require("./lib-handler");
+const cors = require("cors");
 const app = express();
-const {connectToMongoDb,environmentVariables} = require('./config')
+const { connectToMongoDb, environmentVariables } = require("./config");
+const uploadRouter = require("./router");
 
+app.use(express.static("public"));
+app.use(express.json());
+app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
+app.get("/", (req, res) => {
+  console.log("public folder is available");
+  res.send({ message: "public folder is available" });
+});
+
+app.use(uploadRouter);
 
 // global error handler
 app.use(error.handler);
@@ -24,4 +42,3 @@ const main = async () => {
 };
 
 main();
-

@@ -34,8 +34,8 @@ const uploadImage = async(req,res,next)=>{
         
          return success.handler({ data }, req, res, next);
     }
-    catch(error){
-        return error.handler(error, req, res, next);
+    catch(err){
+        return error.handler(err, req, res, next);
     }
 }
 const fetchImage = async (req, res,next) => {
@@ -48,8 +48,8 @@ const fetchImage = async (req, res,next) => {
      }
      return success.handler({ data }, req, res, next);
   }
-  catch(error){
-      return error.handler(error, req, res, next);
+  catch(err){
+      return error.handler(err, req, res, next);
   }
 };
 
@@ -105,8 +105,8 @@ const updateImage = async (req, res, next) => {
        res,
        next
      );
-     } catch (error) {
-    return error.handler(error, req, res, next);
+     } catch (err) {
+    return error.handler(err, req, res, next);
   }
 };
 
@@ -142,8 +142,8 @@ const deleteImage = async (req, res, next) => {
       res,
       next
     );
-  } catch (error) {
-    return error.handler(error, req, res, next);
+  } catch (err) {
+    return error.handler(err, req, res, next);
   }
 };
 
