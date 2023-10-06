@@ -6,7 +6,7 @@ const router = Router();
 
 router.post(
   "/",
-  cloudinary.upload.single("image"),
+  cloudinary.upload.array("images", 6),
   uploadController.uploadImage
 );
 router.get("/:id", uploadController.fetchImage);

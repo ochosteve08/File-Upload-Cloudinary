@@ -1,29 +1,29 @@
 const UploadModel = require("../model/upload.model");
 
 
-const fileUpload = async (name, secure_url, public_id) =>
+const fileUpload = async (name, secure_urls, public_ids) =>
   UploadModel.create({
     name,
-    profile_img: secure_url,
-    cloudinary_id: public_id,
+    profile_imgs: secure_urls,
+    cloudinary_ids: public_ids,
   });
 
 const getUserImage = async ({ id }) => UploadModel.findById(id);
 const updateUserImage = async ({
   id,
-  secure_url,
-  public_id,
+  secure_urls,
+  public_ids,
   name,
   user_name,
-  profile_img,
-  cloudinary_id,
+  profile_imgs,
+  cloudinary_ids,
 }) =>
   UploadModel.findByIdAndUpdate(
     id,
     {
       name: name || user_name,
-      profile_img: secure_url || profile_img,
-      cloudinary_id: public_id || cloudinary_id,
+      profile_imgs: secure_urls || profile_imgs,
+      cloudinary_ids: public_ids || cloudinary_ids,
     },
     { new: true }
   );
