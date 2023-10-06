@@ -2,14 +2,15 @@ import { useState } from "react";
 
 const Contact = () => {
   const [name, setName] = useState("");
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
 
   const HandleOnChange = (event) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
-    }
-    if (!event.target.files) {
-      setName(event.target.value);
+    const { name, value, files } = event.target;
+
+    if (name === "name") {
+      setName(value);
+    } else if (name === "images") {
+      setFiles(files);
     }
   };
 
@@ -21,9 +22,12 @@ const Contact = () => {
       const data = new FormData();
 
       data.append("name", name);
-      data.append("image", file);
+      Array.from(files).forEach((file) => {
+        data.append("images", file);
+      });
+    
 
-      const response = await fetch("http://localhost:5000/", {
+      const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: data,
       });
@@ -31,9 +35,9 @@ const Contact = () => {
         throw new Error("Failed to upload file");
       }
       const result = await response.json();
-      console.log(result);
+      console.log(result.data.name);
     } catch (error) {
-      console.log("Error");
+      console.log("Error:", error);
     }
   };
 
@@ -47,15 +51,16 @@ const Contact = () => {
           placeholder="Enter name"
           value={name}
           id="name"
+          name="name"
           onChange={HandleOnChange}
         />
-        <input type="file" onChange={HandleOnChange} />
+        <input type="file" name="images" multiple onChange={HandleOnChange} />
         <br />
         <br />
         <button type="submit">Upload</button>
       </form>
     </div>
   );
-}
+};
 
-export default Contact
+export default Contact;

@@ -15,6 +15,26 @@ const multer = require("multer");
 //   }
 // };
 
+
+// const storageEngine = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "/images");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}--${file.originalname}`);
+//   },
+// });
+
+// initializing multer
+// const upload = multer({
+//   storage: storageEngine,
+//   limits: { fileSize: 1000000 },
+//   fileFilter: (req, file, cb) => {
+//     checkFileType(file, cb);
+//   },
+// });
+
+
 const memoryStorage = multer.memoryStorage();
 
 const upload = multer({
@@ -58,24 +78,6 @@ const deleteImageFromCloudinary = async (cloudinaryId) => {
 
 
 
-
-// const storageEngine = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "/images");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, `${Date.now()}--${file.originalname}`);
-//   },
-// });
-
-// initializing multer
-// const upload = multer({
-//   storage: storageEngine,
-//   limits: { fileSize: 1000000 },
-//   fileFilter: (req, file, cb) => {
-//     checkFileType(file, cb);
-//   },
-// });
 
 
 module.exports = {

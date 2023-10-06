@@ -10,7 +10,7 @@ const uploadId = Joi.object({
 });
 
 const uploadImage = Joi.object({
-  file: Joi.string().required().label("profile-img"),
+  file: Joi.any().required().label("profile-img"),
 });
 
 

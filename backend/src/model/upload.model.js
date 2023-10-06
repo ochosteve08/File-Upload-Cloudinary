@@ -4,12 +4,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profile_img: {
-    type: String,
-  },
-  cloudinary_id: {
-    type: String,
-  },
+  profile_imgs: [
+    {
+      type: String,
+    },
+  ],
+  cloudinary_ids: [
+    {
+      type: String,
+    },
+  ],
 });
 const UploadModel = mongoose.model("upload", userSchema);
 module.exports = UploadModel;
